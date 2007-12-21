@@ -13,6 +13,7 @@ Url:            http://search.cpan.org/dist/%{module}
 Source:         http://www.cpan.org/modules/by-module/Class/%{module}-%{version}.tar.gz
 BuildRequires:	perl(Class::DBI)
 BuildArch:      noarch
+BuildRoot:      %{_tmppath}/%{name}-%{version}
 
 %description
 This is an extension to Class::DBI, containing several functions and
