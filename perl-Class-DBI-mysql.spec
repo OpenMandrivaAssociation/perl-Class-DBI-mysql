@@ -1,19 +1,20 @@
-%define module  Class-DBI-mysql
-%define name    perl-%{module}
-%define version 1.00
-%define release %mkrel 4
+%define upstream_name    Class-DBI-mysql
+%define upstream_version 1.00
 
-Name:           %{name}
-Version:        %{version}
-Release:        %{release}
-Summary:        Class::DBI extension for MySQL
-License:        GPL or Artistic
-Group:          Development/Perl
-Url:            http://search.cpan.org/dist/%{module}
-Source:         http://www.cpan.org/modules/by-module/Class/%{module}-%{version}.tar.gz
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 5
+
+Summary:    Class::DBI extension for MySQL
+License:    GPL+ or Artistic
+Group:      Development/Perl
+Url:        http://search.cpan.org/dist/%{upstream_name}
+Source0:    http://www.cpan.org/modules/by-module/Class/%{upstream_name}-%{upstream_version}.tar.gz
+
 BuildRequires:	perl(Class::DBI)
+
 BuildArch:      noarch
-BuildRoot:      %{_tmppath}/%{name}-%{version}
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 This is an extension to Class::DBI, containing several functions and
@@ -21,7 +22,7 @@ optimisations for the MySQL database. Instead of setting Class::DBI as your
 base class, use this instead.
 
 %prep
-%setup -q -n %{module}-%{version} 
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
@@ -42,4 +43,3 @@ rm -rf %{buildroot}
 %doc Changes README INSTALL
 %{perl_vendorlib}/Class
 %{_mandir}/*/*
-
